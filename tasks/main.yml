@@ -1,0 +1,28 @@
+---
+- name: Install required packages
+  package:
+    name: vsftpd
+    state: present
+    update_cache: yes
+
+- name: Configure vsftpd service
+  service:
+    name: vsftpd
+    state: started
+    enabled: yes
+
+- name: Add nologin shell
+  lineinfile:
+    state: present
+    dest: /etc/shells
+    line: "/usr/sbin/nologin"
+    regexp: "^/usr/sbin/nologin"
+    insertafter: EOF
+
+- name: Deploy FTP configuration file
+  template:
+    src: vsftpd.conf.j2
+    dest: /etc/vsftpd.conf
+    owner: root
+    group: root
+    mode:  0644
