@@ -30,10 +30,9 @@
 - name: Create ftp directory
   file:
     path: "{{ www_path }}/{{ client_username }}/www_data/ftp"
-    state: directory
-    owner: root
-    group: root
-    mode: 0751
+    owner: "{{ client_username }}"
+    group: "{{ client_username }}"
+    mode: u=rwX,g=rX,o=rX
   when: ftp_only == 'yes'
 
 - name: Add user
@@ -43,15 +42,6 @@
     password: "{{ linux_user_pwd }}"
     home: "/var/www/{{ client_username }}/www_data"
     shell: /usr/sbin/nologin
-
-- name: Set permissions
-  file:
-    dest: "{{ www_path }}/{{ client_username }}/www_data/ftp"
-    owner: "{{ client_username }}"
-    group: "{{ client_username }}"
-    mode: u=rwX,g=rX,o=rX
-    recurse: yes
-  when: ftp_only == 'yes'
 
 - name: Deploy FTP configuration file
   template:
