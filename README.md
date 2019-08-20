@@ -1,6 +1,6 @@
 ---
 # Basic information
-This is a quick and dirty Ansible task that I use to deploy FTP server on LXC containers.  
+This is a quick and dirty Ansible task that I use to deploy FTP server on LXC containers. With little adjustmets it should work on any Debian based server.
 
 If behind NAT, you will need to forward ports ```21``` (or whatever you use for FTP access), ```passive_ftp_min_port``` and ```passive_ftp_max_port``` to the FTP instance.
 
