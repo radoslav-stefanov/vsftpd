@@ -76,7 +76,7 @@ pam_service_name=vsftpd
 # Uncomment this to indicate that vsftpd use a utf8 filesystem.
 utf8_filesystem=YES
 
-pasv_address=91.92.199.108
+pasv_address={{ ftp_address }}
 pasv_enable=YES
 pasv_min_port={{ passive_ftp_min_port }}
 pasv_max_port={{ passive_ftp_max_port }}
